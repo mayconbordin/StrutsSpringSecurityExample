@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    <!-- Layouts -->
+    <definition name="baseLayout" template="/WEB-INF/layouts/baseLayout.jsp">
+        <put-attribute name="mainTitle" value="Web Application"/>
+        <put-attribute name="title" value="Template"/>
+    </definition>
+
+    <!-- Here you include the tiles pages -->
+    <!-- PLEASE DO NOT REMOVE THE COMMENT BELOW -->
+    <!-- generator:pages -->
+    <definition name="loginIndex" extends="baseLayout">
+        <put-attribute name="title" value="Index of Login" />
+        <put-attribute name="body" value="/WEB-INF/login/index.jsp" />
+    </definition>
+    <definition name="loginLogout" extends="baseLayout">
+        <put-attribute name="title" value="Logout of Login" />
+        <put-attribute name="body" value="/WEB-INF/login/logout.jsp" />
+    </definition>
+    <definition name="loginLogin" extends="baseLayout">
+        <put-attribute name="title" value="Login of Login" />
+        <put-attribute name="body" value="/WEB-INF/login/login.jsp" />
+    </definition>
+
+    <definition name="marcaIndex" extends="baseLayout">
+        <put-attribute name="title" value="Index of Marca" />
+        <put-attribute name="body" value="/WEB-INF/marca/index.jsp" />
+    </definition>
+    <definition name="marcaAdd" extends="baseLayout">
+        <put-attribute name="title" value="Add of Marca" />
+        <put-attribute name="body" value="/WEB-INF/marca/add.jsp" />
+    </definition>
+    <definition name="marcaEdit" extends="baseLayout">
+        <put-attribute name="title" value="Edit of Marca" />
+        <put-attribute name="body" value="/WEB-INF/marca/edit.jsp" />
+    </definition>
+
+    <definition name="produtoIndex" extends="baseLayout">
+        <put-attribute name="title" value="Index of Produto" />
+        <put-attribute name="body" value="/WEB-INF/produto/index.jsp" />
+    </definition>
+    <definition name="produtoAdd" extends="baseLayout">
+        <put-attribute name="title" value="Add of Produto" />
+        <put-attribute name="body" value="/WEB-INF/produto/add.jsp" />
+    </definition>
+    <definition name="produtoEdit" extends="baseLayout">
+        <put-attribute name="title" value="Edit of Produto" />
+        <put-attribute name="body" value="/WEB-INF/produto/edit.jsp" />
+    </definition>
+
+
+</tiles-definitions>

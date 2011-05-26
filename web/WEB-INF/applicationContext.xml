@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- generator:beans -->
+    <bean id="paginateListFactory" class="com.strutstool.pagination.factory.PaginateListFactory" />
+    
+    <!-- generator:imports -->
+	<import resource="classpath:com/app/web/controller/config/LoginBeanFactory.xml" />
+
+	<import resource="classpath:com/app/web/controller/config/MarcaBeanFactory.xml" />
+
+	<import resource="classpath:com/app/web/controller/config/ProdutoBeanFactory.xml" />
+
+
+</beans>

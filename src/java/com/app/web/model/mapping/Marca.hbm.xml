@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <!-- generator:mapping -->
+  <class name="com.app.web.model.entity.Marca" table="marca">
+    <id column="id" name="id">
+      <generator class="sequence">
+        <param name="sequence">marca_id_seq</param>
+      </generator>
+    </id>
+    <property column="nome" length="100" name="nome" not-null="true" type="string"/>
+    <set cascade="all-delete-orphan" inverse="true" lazy="true" name="produtos" table="produto">
+      <key column="marca"/>
+      <one-to-many class="com.app.web.model.entity.Produto"/>
+    </set>
+  </class>
+</hibernate-mapping>

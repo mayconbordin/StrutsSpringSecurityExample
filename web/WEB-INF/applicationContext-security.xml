@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <!-- This is where we configure Spring-Security  -->
+    <security:http auto-config="false" use-expressions="true" 
+        access-denied-page="/login/index.action?error=invalid"
+        entry-point-ref="authenticationEntryPoint">
+
+        <security:intercept-url pattern="/login/index.action" access="permitAll"/>
+        <security:intercept-url pattern="/produto/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/marca/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <security:logout invalidate-session="true" logout-success-url="/login/index.action" />
+
+        <security:custom-filter ref="blacklistFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+        <security:custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>        
+        
+    </security:http>
+
+    <!--  Custom filter to deny unwanted users even though registered -->
+    <bean id="blacklistFilter" class="com.strutstool.spring.security.BlacklistFilter" />
+
+    <!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
+    <bean id="customUserDetailsService" class="com.strutstool.spring.security.CustomUserDetailsService" />
+
+    <!-- Custom authentication manager. In order to authenticate, username and password must not be the same -->
+    <bean id="customAuthenticationManager" class="com.strutstool.spring.security.CustomAuthenticationManager" />
+
+    <!-- Custom filter for username and password. The real customization is done in the customAthenticationManager -->
+    <bean id="authenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter"
+          p:authenticationManager-ref="customAuthenticationManager"
+          p:authenticationFailureHandler-ref="customAuthenticationFailureHandler"
+          p:authenticationSuccessHandler-ref="customAuthenticationSuccessHandler" />
+
+    <!-- We just actually need to set the default failure url here -->
+    <bean id="customAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"
+          p:defaultFailureUrl="/login/index.action?error=invalid" />
+
+    <!-- We just actually need to set the default target url here -->
+    <bean id="customAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler"
+          p:defaultTargetUrl="/marca/index.action" />
+
+    <!-- The AuthenticationEntryPoint is responsible for redirecting the user to a page -->
+    <bean id="authenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"
+          p:loginFormUrl="/login/index.action"/>
+
+    <!-- Declare an authentication-manager to use a custom userDetailsService -->
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailsService" />
+    </security:authentication-manager>
+</beans>

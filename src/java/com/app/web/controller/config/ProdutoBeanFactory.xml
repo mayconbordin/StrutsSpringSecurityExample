@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <!-- generator:beans -->
+    <bean id="produtoRepositoryHibernate" class="com.app.web.model.repository.ProdutoRepositoryHibernate" />
+    <bean id="produtoServiceImpl" class="com.app.web.model.service.ProdutoServiceImpl" />
+
+    <bean id="produtoPagingLookupManagerImpl" class="com.strutstool.pagination.manager.PagingLookupManagerImpl">
+        <property name="repository" ref="produtoRepositoryHibernate" />
+    </bean>
+    
+    <bean id="produtoController" class="com.app.web.controller.ProdutoController" singleton="false">
+        <property name="paginateListFactory" ref="paginateListFactory" />
+        <property name="pagingManager" ref="produtoPagingLookupManagerImpl" />
+        <property name="produtoService" ref="produtoServiceImpl" />
+    </bean>
+</beans>

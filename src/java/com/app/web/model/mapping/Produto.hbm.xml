@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <!-- generator:mapping -->
+  <class name="com.app.web.model.entity.Produto" table="produto">
+    <id column="id" name="id">
+      <generator class="sequence">
+        <param name="sequence">produto_id_seq</param>
+      </generator>
+    </id>
+    <property column="nome" length="100" name="nome" not-null="true" type="string"/>
+    <many-to-one class="com.app.web.model.entity.Marca" column="marca" name="marca"/>
+  </class>
+</hibernate-mapping>

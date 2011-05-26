@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "/WEB-INF/classes/struts-2.1.7.dtd">
+    
+<struts>
+    <package name="login" namespace="/login" extends="default">
+        <!-- Index -->
+        <action name="index" method="index" class="loginController">
+            <result name="success" type="tiles" >loginIndex</result>
+            <result name="error" type="tiles" >loginIndex</result>
+            <result name="input" type="tiles" >loginIndex</result>
+        </action>
+    </package>
+</struts>

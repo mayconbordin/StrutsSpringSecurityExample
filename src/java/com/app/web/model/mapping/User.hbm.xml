@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- generator:mapping -->
+    <class name="com.app.web.model.entity.User" table="users">
+        <id name="id" column="id">
+            <generator class="sequence">
+                <param name="sequence">user_id_seq</param>
+            </generator>
+        </id>
+        <property name="username" column="username" not-null="true" type="string" length="15" />
+        <property name="password" column="passw" not-null="true" type="string" length="64" />
+        <property name="enabled" column="enabled" not-null="true" type="boolean" />
+        <property name="authority" column="authority" not-null="true" type="integer" />
+    </class>
+
+</hibernate-mapping>

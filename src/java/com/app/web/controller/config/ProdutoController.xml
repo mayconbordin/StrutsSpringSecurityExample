@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "/WEB-INF/classes/struts-2.1.7.dtd">
+    
+<struts>
+    <package name="produto" namespace="/produto" extends="default">
+    	<!-- Index -->
+        <action name="index" method="index" class="produtoController">
+            <result name="success" type="tiles">produtoIndex</result>
+            <result name="error" type="tiles">produtoIndex</result>
+            <result name="input" type="tiles">produtoIndex</result>
+		</action>
+
+        <!-- Edit -->
+        <action name="edit" method="edit" class="produtoController">
+            <result name="success" type="tiles">produtoEdit</result>
+            <result name="successSave" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/produto</param>
+                <param name="status">success</param>
+            </result>
+            <result name="notFound" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/produto</param>
+                <param name="status">notFound</param>
+            </result>
+            <result name="error" type="tiles">produtoEdit</result>
+            <result name="input" type="tiles">produtoEdit</result>
+		</action>
+
+        <!-- Add -->
+        <action name="add" method="add" class="produtoController">
+            <result name="success" type="tiles">produtoAdd</result>
+            <result name="successSave" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/produto</param>
+                <param name="status">success</param>
+            </result>
+            <result name="error" type="tiles">produtoAdd</result>
+            <result name="input" type="tiles">produtoAdd</result>
+		</action>
+
+        <!-- Delete -->
+        <action name="delete" method="delete" class="produtoController">
+        </action>
+        
+        <!-- generator:actions -->
+    </package>
+</struts>

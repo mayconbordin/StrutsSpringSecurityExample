@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "/WEB-INF/classes/struts-2.1.7.dtd">
+    
+<struts>
+    <package name="marca" namespace="/marca" extends="default">
+    	<!-- Index -->
+        <action name="index" method="index" class="marcaController">
+            <result name="success" type="tiles">marcaIndex</result>
+            <result name="error" type="tiles">marcaIndex</result>
+            <result name="input" type="tiles">marcaIndex</result>
+		</action>
+
+        <!-- Edit -->
+        <action name="edit" method="edit" class="marcaController">
+            <result name="success" type="tiles">marcaEdit</result>
+            <result name="successSave" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/marca</param>
+                <param name="status">success</param>
+            </result>
+            <result name="notFound" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/marca</param>
+                <param name="status">notFound</param>
+            </result>
+            <result name="error" type="tiles">marcaEdit</result>
+            <result name="input" type="tiles">marcaEdit</result>
+		</action>
+
+        <!-- Add -->
+        <action name="add" method="add" class="marcaController">
+            <result name="success" type="tiles">marcaAdd</result>
+            <result name="successSave" type="redirectAction">
+            	<param name="actionName">index</param>
+                <param name="namespace">/marca</param>
+                <param name="status">success</param>
+            </result>
+            <result name="error" type="tiles">marcaAdd</result>
+            <result name="input" type="tiles">marcaAdd</result>
+		</action>
+
+        <!-- Delete -->
+        <action name="delete" method="delete" class="marcaController">
+        </action>
+        
+        <!-- generator:actions -->
+    </package>
+</struts>
